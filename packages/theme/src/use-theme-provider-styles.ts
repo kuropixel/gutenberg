@@ -19,7 +19,7 @@ import {
 	type RampResult,
 } from './color-ramps/index.ts';
 import { getColorString } from './color-ramps/lib/color-utils.ts';
-import { elevationTokensCSS } from './elevation.ts';
+import { shadowTokensCSS } from './shadow.ts';
 import { DEFAULT_RAMPS } from './color-ramps/lib/default-ramps.ts';
 import type { ThemeProviderProps } from './types.ts';
 import {
@@ -186,8 +186,8 @@ function generateStyles( {
 		[
 			// Semantic color tokens
 			colorEntries,
-			// Elevation tokens, whose shadow opacity follows the background
-			elevationTokensCSS( background ),
+			// Shadow tokens, whose shadow opacity follows the background
+			shadowTokensCSS( background ),
 			// Legacy overrides
 			legacyWpAdminThemeOverridesCSS( primary ),
 			legacyWpComponentsOverridesCSS,
