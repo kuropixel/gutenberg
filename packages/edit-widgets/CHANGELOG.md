@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
--   Sidebar: Make the tab bar 48px tall, like the inserter's, with the selected tab's indicator over its bottom border.
+-   Sidebar: Make the tab bar 48px tall, like the inserter's, with the selected tab's indicator over its bottom border ([#87333](https://github.com/WordPress/gutenberg/pull/87333)).
 
 ## 7.2.0 (2026-11-18)
 
