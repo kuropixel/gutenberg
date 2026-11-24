@@ -22,9 +22,6 @@
 -   Update `colord` dependency to 2.14.0 ([#87252](https://github.com/WordPress/gutenberg/pull/87252)).
 -   Update `uuid` dependency to 14.0.3 ([#87242](https://github.com/WordPress/gutenberg/pull/87242)).
 -   Update `vitest` development dependency to 5.1.1 ([#87254](https://github.com/WordPress/gutenberg/pull/87254)).
-
-### Internal
-
 -   Re-indent a multi-line selector in the validated form controls styles for `@stylistic/stylelint-plugin` 6 ([#87149](https://github.com/WordPress/gutenberg/pull/87149)).
 
 ## 22.1.0 (2026-11-18)
