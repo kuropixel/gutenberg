@@ -3,6 +3,7 @@ import { store as coreStore } from '@wordpress/core-data';
 import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
 import { notFound } from '@wordpress/route';
+import { loadEditorAssets } from '@wordpress/lazy-editor/assets';
 
 const NAVIGATION_POST_TYPE = 'wp_navigation';
 
@@ -14,6 +15,8 @@ export const route = {
 			id: string;
 		};
 	} ) => {
+		// The content reads the editor's globals as soon as it loads.
+		await loadEditorAssets();
 		const navigationId = parseInt( params.id, 10 );
 
 		if ( Number.isNaN( navigationId ) ) {

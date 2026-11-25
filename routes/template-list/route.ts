@@ -3,6 +3,7 @@ import { store as coreStore } from '@wordpress/core-data';
 import { filterSortAndPaginate } from '@wordpress/dataviews';
 import { __ } from '@wordpress/i18n';
 import { notFound } from '@wordpress/route';
+import { loadEditorAssets } from '@wordpress/lazy-editor/assets';
 import { ensureView, loadTemplateFields } from './view-utils';
 import type { Template } from './types';
 
@@ -11,6 +12,8 @@ import type { Template } from './types';
  */
 export const route = {
 	async beforeLoad() {
+		// The content reads the editor's globals as soon as it loads.
+		await loadEditorAssets();
 		// Block themes and classic themes shipping a `theme.json` file opt in
 		// automatically, other classic themes have to call
 		// `add_theme_support( 'block-templates' )`.

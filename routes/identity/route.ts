@@ -2,6 +2,7 @@ import { resolveSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import { _x } from '@wordpress/i18n';
 import { unlock } from '@wordpress/routes-lock-unlock';
+import { loadEditorAssets } from '@wordpress/lazy-editor/assets';
 
 /**
  * The stage only renders a form, so it requests the `form` of the entity view
@@ -14,6 +15,10 @@ const VIEW_CONFIG_FIELDS = 'form';
  * Route configuration for the site identity.
  */
 export const route = {
+	async beforeLoad() {
+		// The content reads the editor's globals as soon as it loads.
+		await loadEditorAssets();
+	},
 	title: () => _x( 'Identity', 'site identity' ),
 	async canvas() {
 		return {

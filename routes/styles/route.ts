@@ -3,6 +3,7 @@ import { store as coreStore } from '@wordpress/core-data';
 import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
 import { notFound } from '@wordpress/route';
+import { loadEditorAssets } from '@wordpress/lazy-editor/assets';
 import {
 	getPreviewedStylesheet,
 	getPreviewTitle,
@@ -23,7 +24,9 @@ async function isBlockTheme() {
  * `gutenberg_get_theme_preview_url()` for the full account.
  */
 export const route = {
-	beforeLoad: () => {
+	beforeLoad: async () => {
+		// The content reads the editor's globals as soon as it loads.
+		await loadEditorAssets();
 		if ( isThemePreviewAdminPage() && ! getPreviewedStylesheet() ) {
 			throw notFound();
 		}

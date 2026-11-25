@@ -2,6 +2,7 @@ import { resolveSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import { __ } from '@wordpress/i18n';
 import { notFound } from '@wordpress/route';
+import { loadEditorAssets } from '@wordpress/lazy-editor/assets';
 import { loadNavigationViewConfig } from './view-utils';
 
 const NAVIGATION_POST_TYPE = 'wp_navigation';
@@ -15,6 +16,8 @@ const PRELOADED_NAVIGATION_MENUS_QUERY = {
 
 export const route = {
 	async beforeLoad() {
+		// The content reads the editor's globals as soon as it loads.
+		await loadEditorAssets();
 		// Only block themes render `wp_navigation` posts. Classic themes manage
 		// their menus through Appearance > Menus instead.
 		const theme = await resolveSelect( coreStore ).getCurrentTheme();

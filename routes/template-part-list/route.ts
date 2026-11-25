@@ -2,6 +2,7 @@ import { resolveSelect } from '@wordpress/data';
 import { store as coreStore } from '@wordpress/core-data';
 import { __ } from '@wordpress/i18n';
 import { notFound } from '@wordpress/route';
+import { loadEditorAssets } from '@wordpress/lazy-editor/assets';
 import { ensureView, viewToQuery } from './view-utils';
 
 /**
@@ -9,6 +10,8 @@ import { ensureView, viewToQuery } from './view-utils';
  */
 export const route = {
 	async beforeLoad() {
+		// The content reads the editor's globals as soon as it loads.
+		await loadEditorAssets();
 		// `block-template-parts` lets a classic theme opt into template parts
 		// alone, as the Template Part block itself allows.
 		const theme = await resolveSelect( coreStore ).getCurrentTheme();
